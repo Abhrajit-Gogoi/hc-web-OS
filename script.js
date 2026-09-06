@@ -1,13 +1,11 @@
-//global state and initialization
 document.addEventListener("DOMContentLoaded", () => {
   initLoadingScreen();
   initSystemClock();
   
-  // Phase 2: Initial Welcome Window
   new OSWindow('Welcome', `
     <h1>Welcome to SereneOS</h1>
     <p>System initialized successfully!.....</p>
-    <p>SereneOS is here to relieve you of your stress with its minimalistic and gracious design</p>
+    <p>SereneOS is here to relieve you of your stress with its minimalistic and gracious design.</p>
   `, { x: window.innerWidth / 2 - 210, y: window.innerHeight / 2 - 150, width: 420 });
 });
 
@@ -31,9 +29,6 @@ function initSystemClock() {
   setInterval(updateClock, 1000);
 }
 
-/**
- * Global Layering Stack Manager
- */
 class WindowManager {
   constructor() {
     this.baseZIndex = 100;
@@ -60,20 +55,28 @@ class WindowManager {
 
 const wm = new WindowManager();
 
-/**
- * Dynamic Window Lifecycle & Controller Class
- */
+function launchApp(appId) {
+  if (appId === 'clock') {
+    new OSWindow('Clock', '', { 
+      x: window.innerWidth / 2 - 175, 
+      y: window.innerHeight / 2 - 125, 
+      width: 350, 
+      height: 250,
+      iframeSrc: 'clock.html' 
+    });
+  }
+}
+
 class OSWindow {
   constructor(title, contentHTML, options = {}) {
     this.id = 'win-' + Math.random().toString(36).substr(2, 9);
     this.title = title;
     this.contentHTML = contentHTML;
+    this.iframeSrc = options.iframeSrc || null;
     
-    // State Tracking
     this.isMaximized = false;
     this.isMinimized = false;
     
-    // Spatial Coordinates
     this.rect = { 
       top: options.y || 100, 
       left: options.x || 150, 
@@ -97,6 +100,14 @@ class OSWindow {
     this.element.style.width = `${this.rect.width}px`;
     if (this.rect.height !== 'auto') this.element.style.height = `${this.rect.height}px`;
 
+    let bodyContent = this.contentHTML;
+    let bodyClass = "window-body";
+
+    if (this.iframeSrc) {
+      bodyContent = `<iframe src="${this.iframeSrc}" class="window-iframe" sandbox="allow-scripts allow-same-origin"></iframe>`;
+      bodyClass += " sandboxed";
+    }
+
     this.element.innerHTML = `
       <div class="window-header">
         <div class="window-controls">
@@ -106,10 +117,9 @@ class OSWindow {
         </div>
         <div class="window-title">${this.title}</div>
       </div>
-      <div class="window-body">${this.contentHTML}</div>
+      <div class="${bodyClass}">${bodyContent}</div>
     `;
 
-    // Global focus acquisition
     this.element.addEventListener('pointerdown', () => wm.bringToFront(this));
   }
 
@@ -119,18 +129,15 @@ class OSWindow {
     let originX, originY, initialLeft, initialTop;
 
     header.addEventListener('pointerdown', (e) => {
-      // Prevent drag execution if clicking window controls
       if (e.target.classList.contains('control')) return;
       
       isDragging = true;
       originX = e.clientX;
       originY = e.clientY;
       
-      // Parse current position payload
       initialLeft = parseFloat(getComputedStyle(this.element).left) || 0;
       initialTop = parseFloat(getComputedStyle(this.element).top) || 0;
       
-      // Lock pointer to header to maintain tracking outside element bounds
       header.setPointerCapture(e.pointerId);
     });
 
@@ -140,19 +147,13 @@ class OSWindow {
       let newLeft = initialLeft + (e.clientX - originX);
       let newTop = initialTop + (e.clientY - originY);
 
-      // Boundary Resolution Constants
       const topBarHeight = 30;
       const canvasWidth = window.innerWidth;
       const canvasHeight = window.innerHeight;
       const windowWidth = this.element.offsetWidth;
 
-      // Top constraint (prevent sliding under system bar)
       if (newTop < topBarHeight) newTop = topBarHeight;
-      
-      // Bottom constraint (keep header accessible)
       if (newTop > canvasHeight - 40) newTop = canvasHeight - 40;
-      
-      // Left/Right constraints (prevent total viewport exit)
       if (newLeft < -windowWidth + 50) newLeft = -windowWidth + 50;
       if (newLeft > canvasWidth - 50) newLeft = canvasWidth - 50;
 
@@ -206,5 +207,3 @@ class OSWindow {
     }
   }
 }
-
-
