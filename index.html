@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SereneOS</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="loading-screen">
+    <div class="loading-title">SereneOS</div>
+  </div>
+
+  <div id="desktop">
+    <header class="top-bar">
+      <div class="top-bar-left"></div>
+      <div class="top-bar-center">SereneOS</div>
+      <div class="top-bar-right">
+        <span id="system-clock">--:-- --</span>
+      </div>
+    </header>
+
+    <main class="desktop-canvas">
+      <div class="window" id="welcome-window">
+        <div class="window-header">
+          <div class="window-controls">
+            <button class="control close" aria-label="Close"></button>
+            <button class="control minimize" aria-label="Minimize"></button>
+            <button class="control maximize" aria-label="Maximize"></button>
+          </div>
+          <div class="window-title">Welcome</div>
+        </div>
+        <div class="window-body">
+          <h1>Welcome to SereneOS</h1>
+          <p>This is my pleasant little web OS where the fun is about to begin!</p>
+          <p>The os is up and ready to offer you that peace of mind.</p>
+        </div>
+      </div>
+    </main>
+
+    <nav class="dock">
+      <div class="dock-item" data-app="calculator"></div>
+      <div class="dock-item" data-app="notes"></div>
+      <div class="dock-item" data-app="clock"></div>
+      <div class="dock-item"></div>
+      <div class="dock-item"></div>
+      <div class="dock-item"></div>
+    </nav>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
