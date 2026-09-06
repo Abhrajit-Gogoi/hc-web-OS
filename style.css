@@ -209,12 +209,12 @@ html, body {
   cursor: grabbing;
 }
 
-/* Maximized State Constraints */
+/*maximised state constraints*/
 .window.maximized {
-  top: 30px !important; /* Snap below top-bar */
+  top: 0 !important; 
   left: 0 !important;
-  width: 100vw !important;
-  height: calc(100vh - 30px) !important;
+  width: 100% !important; 
+  height: 100% !important; 
   border-radius: 0;
   transform: none !important;
 }
