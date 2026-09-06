@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clock App</title>
+  <style>
+    :root {
+      --bg-color: #fcfcfc;
+      --text-main: #2c2c2e;
+      --text-sub: #8e8e93;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-color);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+    
+    .clock-container {
+      text-align: center;
+      animation: fadeIn 0.4s ease-out;
+    }
+    
+    .time-display {
+      font-size: 4.5rem;
+      font-weight: 200;
+      color: var(--text-main);
+      letter-spacing: -2px;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+    
+    .date-display {
+      margin-top: 12px;
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--text-sub);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.98); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="clock-container">
+    <div class="time-display" id="time">00:00:00</div>
+    <div class="date-display" id="date">Loading...</div>
+  </div>
+
+  <script>
+    const timeDisplay = document.getElementById('time');
+    const dateDisplay = document.getElementById('date');
+
+    function updateTime() {
+      const now = new Date();
+      
+      const timeString = now.toLocaleTimeString([], { 
+        hour: '2-digit', 
+        minute: '2-digit', 
+        second: '2-digit',
+        hour12: true 
+      });
+      
+      const dateString = now.toLocaleDateString([], { 
+        weekday: 'long', 
+        month: 'long', 
+        day: 'numeric' 
+      });
+
+      if (timeDisplay.textContent !== timeString) {
+        timeDisplay.textContent = timeString;
+      }
+      
+      if (dateDisplay.textContent !== dateString) {
+        dateDisplay.textContent = dateString;
+      }
+      
+      requestAnimationFrame(updateTime);
+    }
+
+    requestAnimationFrame(updateTime);
+  </script>
+
+</body>
+</html>

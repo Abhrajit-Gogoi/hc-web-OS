@@ -223,3 +223,33 @@ html, body {
 .window.minimized {
   display: none; /* Phase 2 simplified minimize state */
 }
+
+.dock-item {
+  /* Existing parameters... */
+  overflow: hidden; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.app-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none; /* Prevents ghost-dragging of the image */
+}
+
+/* App Sandbox Styling */
+.window-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: transparent;
+  display: block;
+}
+
+.window-body.sandboxed {
+  padding: 0;
+  height: calc(100% - 32px); /* Subtract header height */
+  overflow: hidden;
+}
