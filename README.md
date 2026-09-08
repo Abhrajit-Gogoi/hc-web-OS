@@ -1,5 +1,5 @@
 Hello World!!
-    Welcome to my custom web OS. The Serene OS is a minimalistic OS you will be able to run in your browser itself. 
+Welcome to my custom web OS. The Serene OS is a minimalistic OS you will be able to run in your browser itself. 
 
 The desktop layout is based on MacOS layout. The app icons will do a hover animation when you pass above them. After starting, it shows a welcome message in a draggable window.
 
