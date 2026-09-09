@@ -64,6 +64,22 @@ function launchApp(appId) {
       height: 250,
       iframeSrc: 'clock.html' 
     });
+  } else if (appId === 'calculator') {
+    new OSWindow('Calculator', '', {
+      x: window.innerWidth / 2 - 150,
+      y: window.innerHeight / 2 - 200,
+      width: 300,
+      height: 400,
+      iframeSrc: 'calculator.html'
+    });
+  } else if (appId === 'notes') {
+    new OSWindow('Notes', '', {
+      x: window.innerWidth / 2 - 200,
+      y: window.innerHeight / 2 - 200,
+      width: 400,
+      height: 400,
+      iframeSrc: 'notes.html'
+    });
   }
 }
 

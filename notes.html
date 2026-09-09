@@ -1,0 +1,23 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Notes</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { height: 100vh; display: flex; flex-direction: column; background: #fff9e6; font-family: -apple-system, sans-serif; }
+    textarea { flex: 1; width: 100%; border: none; outline: none; background: transparent; padding: 16px; font-size: 1rem; line-height: 1.5; resize: none; color: #333; }
+  </style>
+</head>
+<body>
+  <textarea id="note" placeholder="Type your note here..."></textarea>
+  <script>
+    const note = document.getElementById('note');
+    note.value = localStorage.getItem('serene_note') || '';
+    note.addEventListener('input', () => {
+      localStorage.setItem('serene_note', note.value);
+    });
+  </script>
+</body>
+</html>
