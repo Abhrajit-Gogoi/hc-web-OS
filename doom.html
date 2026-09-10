@@ -15,11 +15,7 @@
   <div id="dos"></div>
   <script>
     Dos(document.getElementById("dos"), {
-      url: "doom.zip",
-      async autoStart() {
-        const ci = await Dos(document.getElementById("dos")).run("doom.zip");
-        ci.execute("DOOM.EXE");
-      }
+      url: "doom.zip"
     });
   </script>
 </body>
