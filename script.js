@@ -111,8 +111,33 @@ function launchApp(appId) {
       height: 400,
       iframeSrc: 'notes.html'
     });
+  } else if (appId === 'gta') {
+    new OSWindow('gta', '', {
+      x: window.innerWidth / 2 - 480,
+      y: window.innerHeight / 2 - 300,
+      width: 960,
+      height: 600,
+      iframeSrc: 'gta.html'
+    });
+  } else if (appId === 'basketball') {
+    new OSWindow('basketball', '', {
+      x: window.innerWidth / 2 - 480,
+      y: window.innerHeight / 2 - 300,
+      width: 960,
+      height: 600,
+      iframeSrc: 'basketball.html'
+    });
+  } else if (appId === 'doom') {
+    new OSWindow('DOOM 1993', '', {
+      x: window.innerWidth / 2 - 425,
+      y: window.innerHeight / 2 - 300,
+      width: 850,
+      height: 600,
+      iframeSrc: 'doom.html'
+    });
   }
 }
+
 
 class OSWindow {
   constructor(title, contentHTML, options = {}) {

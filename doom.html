@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DOOM 1993</title>
+  <script src="https://v8.js-dos.com/latest/js-dos.js"></script>
+  <link rel="stylesheet" href="https://v8.js-dos.com/latest/js-dos.css">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
+    #dos { width: 100%; height: 100%; }
+  </style>
+</head>
+<body>
+  <div id="dos"></div>
+  <script>
+    Dos(document.getElementById("dos"), {
+      url: "doom.zip",
+      async autoStart() {
+        const ci = await Dos(document.getElementById("dos")).run("doom.zip");
+        ci.execute("DOOM.EXE");
+      }
+    });
+  </script>
+</body>
+</html>
