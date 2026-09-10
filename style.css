@@ -249,3 +249,64 @@ html, body {
   height: calc(100% - 32px);
   overflow: hidden;
 }
+
+.theme-btn {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 3px;
+}
+
+.theme-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+#desktop.dark-mode {
+  background-image: url('wallpaper.png');
+}
+
+#desktop.dark-mode .top-bar {
+  background: rgba(30, 30, 30, 0.75);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#desktop.dark-mode .top-bar-center,
+#desktop.dark-mode .top-bar-right {
+  color: #e5e5e5;
+}
+
+#desktop.dark-mode .theme-btn {
+  background: rgba(255, 255, 255, 0.6);
+}
+
+#desktop.dark-mode .window {
+  background: rgba(30, 30, 35, 0.85);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+#desktop.dark-mode .window-header {
+  background: rgba(45, 45, 50, 0.6);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+#desktop.dark-mode .window-title,
+#desktop.dark-mode .window-body {
+  color: #e5e5e5;
+}
+
+#desktop.dark-mode .window-body p {
+  color: #aaaaaa;
+}
+
+#desktop.dark-mode .dock {
+  background: rgba(40, 40, 45, 0.5);
+  border-color: rgba(255, 255, 255, 0.15);
+}

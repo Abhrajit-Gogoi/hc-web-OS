@@ -8,6 +8,8 @@
 </head>
 <body>
 
+  <audio id="bg-audio" src="bg.mp3" loop></audio>
+
   <!-- Loading Screen  -->
   <div id="loading-screen">
     <div class="loading-title">SereneOS</div>
@@ -17,7 +19,11 @@
   <div id="desktop">
     
     <header class="top-bar">
-      <div class="top-bar-left"></div>
+      <div class="top-bar-left">
+        <button id="theme-toggle" class="theme-btn">
+          <img id="theme-icon" src="sun.png" alt="Theme">
+        </button>
+      </div>
       <div class="top-bar-center">SereneOS</div>
       <div class="top-bar-right">
         <span id="system-clock">--:-- --</span>

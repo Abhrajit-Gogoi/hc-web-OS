@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
   initLoadingScreen();
   initSystemClock();
+  initTheme();
+  initAudio();
   
   new OSWindow('Welcome', `
     <h1>Welcome to SereneOS</h1>
@@ -8,6 +10,35 @@ document.addEventListener("DOMContentLoaded", () => {
     <p>SereneOS is here to relieve you of your stress with its minimalistic and gracious design.</p>
   `, { x: window.innerWidth / 2 - 210, y: window.innerHeight / 2 - 150, width: 420 });
 });
+
+function initAudio() {
+  const audio = document.getElementById('bg-audio');
+  audio.volume = 0.3;
+  const playAudio = () => {
+    audio.play().catch(() => {});
+    document.removeEventListener('pointerdown', playAudio);
+  };
+  document.addEventListener('pointerdown', playAudio);
+}
+
+function initTheme() {
+  const toggle = document.getElementById('theme-toggle');
+  const icon = document.getElementById('theme-icon');
+  const desktop = document.getElementById('desktop');
+
+  const currentTheme = localStorage.getItem('serene_theme') || 'light';
+  if (currentTheme === 'dark') {
+    desktop.classList.add('dark-mode');
+    icon.src = 'moon.png';
+  }
+
+  toggle.addEventListener('click', () => {
+    desktop.classList.toggle('dark-mode');
+    const isDark = desktop.classList.contains('dark-mode');
+    icon.src = isDark ? 'moon.png' : 'sun.png';
+    localStorage.setItem('serene_theme', isDark ? 'dark' : 'light');
+  });
+}
 
 function initLoadingScreen() {
   const loadingScreen = document.getElementById("loading-screen");
@@ -195,12 +226,12 @@ class OSWindow {
 
     minBtn.addEventListener('click', (e) => {
       e.stopPropagation();
-      this.minimize();
+      this.isMinimized();
     });
 
     maxBtn.addEventListener('click', (e) => {
       e.stopPropagation();
-      this.maximize();
+      this.isMaximized();
     });
   }
 
