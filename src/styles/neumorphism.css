@@ -1,0 +1,26 @@
+.neu-flat {
+  background: var(--bg-surface);
+  box-shadow: var(--neu-shadow-flat);
+  border-radius: var(--radius-ctrl);
+}
+
+.neu-pressed {
+  background: var(--bg-surface);
+  box-shadow: var(--neu-shadow-inset);
+  border-radius: var(--radius-ctrl);
+}
+
+.neu-btn {
+  background: var(--bg-surface);
+  box-shadow: var(--neu-shadow-flat);
+  border-radius: var(--radius-ctrl);
+  transition: all 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.neu-btn:active,
+.neu-btn.active {
+  box-shadow: var(--neu-shadow-inset);
+}

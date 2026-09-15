@@ -1,0 +1,31 @@
+:root {
+  --bg-main: #c3b5d3;
+  --bg-surface: #d8cded;
+  --bg-surface-soft: #e3d9f3;
+  --txt-main: #3d3248;
+  --txt-muted: #726382;
+  --accent: #a482be;
+
+  --neu-light: #f5edff;
+  --neu-dark: #b1a0c4;
+  --neu-shadow-flat: 6px 6px 12px var(--neu-dark), -6px -6px 12px var(--neu-light);
+  --neu-shadow-inset: inset 3px 3px 6px var(--neu-dark), inset -3px -3px 6px var(--neu-light);
+
+  --radius-win: 16px;
+  --radius-ctrl: 10px;
+  --taskbar-h: 40px;
+}
+
+[data-theme="dark"] {
+  --bg-main: #1f1a24;
+  --bg-surface: #2b2433;
+  --bg-surface-soft: #382f42;
+  --txt-main: #ece6f2;
+  --txt-muted: #9b8ea8;
+  --accent: #b08cd1;
+
+  --neu-light: #352c3f;
+  --neu-dark: #191420;
+  --neu-shadow-flat: 5px 5px 10px var(--neu-dark), -5px -5px 10px var(--neu-light);
+  --neu-shadow-inset: inset 3px 3px 6px var(--neu-dark), inset -3px -3px 6px var(--neu-light);
+}
