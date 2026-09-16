@@ -7,7 +7,14 @@ export default function App() {
   const { booted, locked, setBooted, setLocked } = useSystemStore();
 
   if (!booted) {
-    return <BootScreen onDone={() => setBooted(true)} />;
+    return (
+      <BootScreen
+        onDone={() => {
+          setBooted(true);
+          setLocked(true);
+        }}
+      />
+    );
   }
 
   if (locked) {

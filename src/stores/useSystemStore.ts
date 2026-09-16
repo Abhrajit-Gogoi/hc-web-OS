@@ -17,12 +17,12 @@ export const useSystemStore = create<SystemStore>()(
   persist(
     (set) => ({
       theme: 'lavender',
-      wallpaper: '/bg.jpg',
+      wallpaper: '/bg.png',
       accent: '#a482be',
       sound: true,
       user: 'User',
       booted: false,
-      locked: false,
+      locked: true,
       pinned: ['files', 'editor', 'term'],
 
       setTheme: (theme) => set({ theme }),
