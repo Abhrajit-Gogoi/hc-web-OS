@@ -17,7 +17,7 @@ export const useSystemStore = create<SystemStore>()(
   persist(
     (set) => ({
       theme: 'lavender',
-      wallpaper: '/bg.png',
+      wallpaper: '/bg.jpg',
       accent: '#a482be',
       sound: true,
       user: 'User',

@@ -9,10 +9,12 @@ interface WindowStore {
   closeWin: (id: string) => void;
   focusWin: (id: string) => void;
   minWin: (id: string) => void;
+  restoreWin: (id: string) => void;
   toggleMaxWin: (id: string) => void;
   moveWin: (id: string, x: number, y: number) => void;
   resizeWin: (id: string, w: number, h: number) => void;
   setBounds: (id: string, bounds: { x: number; y: number; w: number; h: number }) => void;
+  setTitle: (id: string, title: string) => void;
 }
 
 export const useWindowStore = create<WindowStore>((set, get) => ({
@@ -75,6 +77,12 @@ export const useWindowStore = create<WindowStore>((set, get) => ({
     set({ wins, focusedId });
   },
 
+  restoreWin: (id) => {
+    set((s) => ({
+      wins: s.wins.map((w) => (w.id === id ? { ...w, isMin: false } : w)),
+    }));
+  },
+
   toggleMaxWin: (id) => {
     set((s) => ({
       wins: s.wins.map((w) => {
@@ -111,6 +119,12 @@ export const useWindowStore = create<WindowStore>((set, get) => ({
   setBounds: (id, b) => {
     set((s) => ({
       wins: s.wins.map((w) => (w.id === id ? { ...w, ...b } : w)),
+    }));
+  },
+
+  setTitle: (id, title) => {
+    set((s) => ({
+      wins: s.wins.map((w) => (w.id === id ? { ...w, title } : w)),
     }));
   },
 }));

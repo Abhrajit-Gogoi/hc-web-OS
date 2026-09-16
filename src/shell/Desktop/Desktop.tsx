@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react';
 import { Menu, Lock } from 'lucide-react';
 import { useSystemStore } from '../../stores/useSystemStore';
+import { useWindowStore } from '../../stores/useWindowStore';
+import { Window } from '../Window/Window';
 
 export function Desktop() {
   const { theme, wallpaper, setLocked } = useSystemStore();
+  const wins = useWindowStore((s) => s.wins);
   const [now, setNow] = useState(new Date());
 
   useEffect(() => {
@@ -38,6 +41,7 @@ export function Desktop() {
           justifyContent: 'space-between',
           background: 'rgba(216, 205, 237, 0.25)',
           backdropFilter: 'blur(8px)',
+          zIndex: 99999,
         }}
       >
         <button className="neu-btn" style={{ width: 32, height: 32, borderRadius: 8 }}>
@@ -70,7 +74,11 @@ export function Desktop() {
         </div>
       </header>
 
-      <main style={{ flex: 1, position: 'relative' }} />
+      <main style={{ flex: 1, position: 'relative' }}>
+        {wins.map((win) => (
+          <Window key={win.id} win={win} />
+        ))}
+      </main>
     </div>
   );
 }

@@ -1,3 +1,16 @@
+import { ComponentType } from 'react';
+import {
+  Calculator,
+  Clock,
+  Folder,
+  Globe,
+  Palette,
+  Settings,
+  Activity,
+  Terminal,
+  FileText,
+  User,
+} from 'lucide-react';
 import { AppDefinition, AppId } from '../types';
 
 const stub = (name: string) => function AppStub() {
@@ -15,6 +28,19 @@ export const appRegistry: Record<AppId, AppDefinition> = {
   term: { id: 'term', name: 'Terminal', icon: 'Terminal', comp: stub('Terminal'), defW: 650, defH: 400 },
   editor: { id: 'editor', name: 'Text Editor', icon: 'FileText', comp: stub('Text Editor'), defW: 600, defH: 450 },
   about: { id: 'about', name: 'About Me', icon: 'User', comp: stub('About Me'), defW: 580, defH: 480, single: true },
+};
+
+export const appIcons: Record<string, ComponentType<{ size?: number; color?: string }>> = {
+  Calculator,
+  Clock,
+  Folder,
+  Globe,
+  Palette,
+  Settings,
+  Activity,
+  Terminal,
+  FileText,
+  User,
 };
 
 export const getApp = (id: AppId): AppDefinition | undefined => appRegistry[id];
