@@ -1,4 +1,27 @@
-import { ComponentType } from 'react';
+export type NodeType = 'file' | 'folder';
+
+export interface VNode {
+  id: string;
+  name: string;
+  type: NodeType;
+  parentId: string | null;
+  content?: string;
+  size?: number;
+  updatedAt: number;
+}
+
+export type ThemeName = 'lavender' | 'mint' | 'peach' | 'dusk';
+
+export interface SystemSettings {
+  theme: ThemeName;
+  wallpaper: string;
+  accent: string;
+  sound: boolean;
+  user: string;
+  booted: boolean;
+  locked: boolean;
+  pinned: AppId[];
+}
 
 export type AppId =
   | 'calc'
@@ -10,26 +33,14 @@ export type AppId =
   | 'taskmgr'
   | 'term'
   | 'editor'
-  | 'about';
-
-export type NodeType = 'dir' | 'file' | 'app';
-export type ThemeName = 'lavender' | 'dark' | 'light';
-
-export interface FsNode {
-  id: string;
-  name: string;
-  type: NodeType;
-  parentId: string;
-  content?: string;
-  createdAt: number;
-  updatedAt: number;
-}
+  | 'about'
+  | 'welcome';
 
 export interface AppDefinition {
   id: AppId;
   name: string;
   icon: string;
-  comp: ComponentType<{ winId: string; launchProps?: Record<string, unknown> }>;
+  comp: React.ComponentType<{ winId?: string; launchProps?: Record<string, unknown> }>;
   defW: number;
   defH: number;
   minW?: number;
@@ -51,33 +62,4 @@ export interface WindowState {
   isMax: boolean;
   prevBounds?: { x: number; y: number; w: number; h: number };
   launchProps?: Record<string, unknown>;
-}
-
-export interface SystemSettings {
-  theme: ThemeName;
-  wallpaper: string;
-  accent: string;
-  sound: boolean;
-  user: string;
-  booted: boolean;
-  locked: boolean;
-  pinned: AppId[];
-}
-
-export interface ContextMenuItem {
-  id: string;
-  label: string;
-  icon?: string;
-  action: () => void;
-  danger?: boolean;
-  sep?: boolean;
-}
-
-export interface UserProfile {
-  name: string;
-  tagline: string;
-  bio: string;
-  skills: string[];
-  socials: Record<string, string>;
-  email: string;
 }
