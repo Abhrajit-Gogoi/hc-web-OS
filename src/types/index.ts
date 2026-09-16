@@ -1,4 +1,4 @@
-export type NodeType = 'file' | 'folder';
+export type NodeType = 'file' | 'folder' | 'dir';
 
 export interface VNode {
   id: string;
@@ -7,9 +7,27 @@ export interface VNode {
   parentId: string | null;
   content?: string;
   size?: number;
+  createdAt?: number;
   updatedAt: number;
 }
 
+export type FsNode = VNode;
+
+export interface UserProfile {
+  name: string;
+  avatar?: string;
+  role?: string;
+  bio?: string;
+  tagline?: string;
+  skills?: string[];
+  email?: string;
+  socials?: {
+    github?: string;
+    twitter?: string;
+    linkedin?: string;
+    [key: string]: string | undefined;
+  };
+}
 export type ThemeName = 'lavender' | 'mint' | 'peach' | 'dusk';
 
 export interface SystemSettings {

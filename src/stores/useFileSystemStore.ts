@@ -95,11 +95,14 @@ export const useFileSystemStore = create<FileSystemStore>()(
       getPath: (id) => {
         const { nodes } = get();
         const parts: string[] = [];
-        let curr = nodes[id];
-        while (curr && curr.id !== ROOT_ID) {
-          parts.unshift(curr.name);
-          curr = nodes[curr.parentId];
+        let cur: string | null = id;
+
+        while (cur && nodes[cur]) {
+          const n: FsNode = nodes[cur];
+          parts.unshift(n.name);
+          cur = n.parentId;
         }
+
         return '/' + parts.join('/');
       },
 
