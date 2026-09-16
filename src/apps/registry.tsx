@@ -10,14 +10,17 @@ import {
   Terminal,
   FileText,
   User,
+  Info,
 } from 'lucide-react';
 import { AppDefinition, AppId } from '../types';
+import { Welcome } from './Welcome';
 
 const stub = (name: string) => function AppStub() {
   return <div style={{ padding: 16 }}>{name} App Placeholder</div>;
 };
 
-export const appRegistry: Record<AppId, AppDefinition> = {
+export const appRegistry: Record<AppId | 'welcome', AppDefinition> = {
+  welcome: { id: 'welcome' as AppId, name: 'Welcome', icon: 'Info', comp: Welcome, defW: 420, defH: 260, single: true },
   calc: { id: 'calc', name: 'Calculator', icon: 'Calculator', comp: stub('Calculator'), defW: 320, defH: 440, single: true },
   clock: { id: 'clock', name: 'Clock', icon: 'Clock', comp: stub('Clock'), defW: 400, defH: 480, single: true },
   files: { id: 'files', name: 'File Explorer', icon: 'Folder', comp: stub('File Explorer'), defW: 700, defH: 480 },
@@ -41,6 +44,7 @@ export const appIcons: Record<string, ComponentType<{ size?: number; color?: str
   Terminal,
   FileText,
   User,
+  Info,
 };
 
-export const getApp = (id: AppId): AppDefinition | undefined => appRegistry[id];
+export const getApp = (id: string): AppDefinition | undefined => appRegistry[id as keyof typeof appRegistry];

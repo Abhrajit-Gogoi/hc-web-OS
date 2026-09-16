@@ -1,19 +1,32 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Menu, Lock } from 'lucide-react';
 import { useSystemStore } from '../../stores/useSystemStore';
 import { useWindowStore } from '../../stores/useWindowStore';
 import { Window } from '../Window/Window';
+import { Taskbar } from '../Taskbar/Taskbar';
+import { getApp } from '../../apps/registry';
 
 export function Desktop() {
   const { theme, wallpaper, setLocked } = useSystemStore();
-  const wins = useWindowStore((s) => s.wins);
+  const { wins, openWin } = useWindowStore();
   const [now, setNow] = useState(new Date());
+  const welcomed = useRef(false);
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
     const timer = setInterval(() => setNow(new Date()), 1000);
     return () => clearInterval(timer);
   }, [theme]);
+
+  useEffect(() => {
+    if (!welcomed.current) {
+      welcomed.current = true;
+      const w = getApp('welcome');
+      if (w) {
+        openWin({ appId: w.id, title: w.name, icon: w.icon, w: w.defW, h: w.defH });
+      }
+    }
+  }, [openWin]);
 
   const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
 
@@ -79,6 +92,8 @@ export function Desktop() {
           <Window key={win.id} win={win} />
         ))}
       </main>
+
+      <Taskbar />
     </div>
   );
 }
