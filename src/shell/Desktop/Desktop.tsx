@@ -5,6 +5,7 @@ import { useWindowStore } from '../../stores/useWindowStore';
 import { Window } from '../Window/Window';
 import { Taskbar } from '../Taskbar/Taskbar';
 import { getApp } from '../../apps/registry';
+import debg from '../../assets/bg.jpg';
 
 export function Desktop() {
   const { theme, wallpaper, setLocked } = useSystemStore();
@@ -29,13 +30,14 @@ export function Desktop() {
   }, [openWin]);
 
   const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+  const activeWallpaper = (!wallpaper || wallpaper === '/bg.jpg') ? debg : wallpaper;
 
   return (
     <div
       style={{
         width: '100vw',
         height: '100vh',
-        backgroundImage: `url(${wallpaper})`,
+        backgroundImage: `url(${activeWallpaper})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         position: 'relative',

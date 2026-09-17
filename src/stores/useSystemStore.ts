@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { SystemSettings, AppId } from '../types';
+import debg from '../assets/bg.jpg';
 
 interface SystemStore extends SystemSettings {
   setTheme: (t: SystemSettings['theme']) => void;
@@ -17,7 +18,7 @@ export const useSystemStore = create<SystemStore>()(
   persist(
     (set) => ({
       theme: 'lavender',
-      wallpaper: '/bg.jpg',
+      wallpaper: debg,
       accent: '#a482be',
       sound: true,
       user: 'User',
